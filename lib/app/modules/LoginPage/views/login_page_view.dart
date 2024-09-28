@@ -135,7 +135,7 @@ class LoginPageView extends GetView<LoginPageController> {
                       ),
                     ),
                     child: ElevatedButton(
-                      onPressed: () => Get.offNamed(Routes.HOME),
+                      onPressed: () => Get.offAllNamed(Routes.HOME),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         elevation: 0,
@@ -143,7 +143,11 @@ class LoginPageView extends GetView<LoginPageController> {
                       ),
                       child: Text(
                         'Login',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: 'myfont',
+                        ),
                       ),
                     ),
                   ),
