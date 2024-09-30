@@ -1,21 +1,39 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilController extends GetxController {
-  final count = 0.obs;
+  var isDarkMode = false.obs;
+
   @override
   void onInit() {
+    loadDarkModePreference();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future<void> loadDarkModePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    isDarkMode.value = prefs.getBool('isDarkMode') ?? false; // Default to false
+    if (isDarkMode.value) {
+      Get.changeTheme(ThemeData.dark());
+    } else {
+      Get.changeTheme(ThemeData.light());
+    }
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  void toggleDarkMode(bool isDark) {
+    isDarkMode.value = isDark;
+    saveDarkModePreference(isDark);
+
+    if (isDark) {
+      Get.changeTheme(ThemeData.dark());
+    } else {
+      Get.changeTheme(ThemeData.light());
+    }
   }
 
-  void increment() => count.value++;
+  Future<void> saveDarkModePreference(bool isDark) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkMode', isDark);
+  }
 }

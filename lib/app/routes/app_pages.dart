@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/LoginPage/bindings/login_page_binding.dart';
 import '../modules/LoginPage/views/login_page_view.dart';
+import '../modules/detail/bindings/detail_binding.dart';
+import '../modules/detail/views/detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_list/bindings/home_list_binding.dart';
@@ -43,13 +45,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HOME_LIST,
-      page: () => const HomeListView(),
+      page: () => HomeListView(),
       binding: HomeListBinding(),
     ),
     GetPage(
       name: _Paths.PROFIL,
-      page: () => const ProfilView(),
+      page: () => ProfilView(),
       binding: ProfilBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL,
+      page: () => const DetailView(),
+      binding: DetailBinding(),
     ),
   ];
 }
